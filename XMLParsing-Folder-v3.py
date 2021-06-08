@@ -14,11 +14,8 @@ for entry in obj:
         newfilename=directory+'\\'+foldername+'\\'+userinput+'_'+filename
         os.rename(file.path,newfilename) 
         print('done') #setup some delay
-
-
         
-obj.close()
-
+ ------------------------------------------------
 
 directory=r'C:\Users\KZ623JK\OneDrive - EY\Documents\Carrier'
 obj=os.scandir(directory)
@@ -47,3 +44,6 @@ for entry in obj:
                         
         root.write(file.path)
         print('done')
+ 
+obj.close()
+
