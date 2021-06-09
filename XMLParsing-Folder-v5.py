@@ -2,7 +2,7 @@ import os
 import time
 import xml.etree.ElementTree as ET
 
-directory=r'C:\Users\KZ623JK\OneDrive - EY\Documents\Carrier'
+directory=input('enter the file directory')
 obj = os.scandir(directory)
 
 userinput = input(' enter the new filename')
@@ -83,7 +83,7 @@ for entry in os.scandir(directory):
                         
                         
         root.write(file.path)
-        print('wait...')
+        print('waiting...')
 
 
         
