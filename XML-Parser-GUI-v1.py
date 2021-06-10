@@ -8,7 +8,7 @@ roottk=Tk()
 roottk.geometry("750x500")
 
 Directory=Label(roottk,text="File Directory").place(x=30,y=20)
-FileName=Label(roottk,text="New File Name").place(x=30,y=60)
+FileName=Label(roottk,text="Product Name").place(x=30,y=60)
 EffectiveDate=Label(roottk,text="Effective Date").place(x=30,y=100)
 
 input_directory = Entry(roottk,width=70)
@@ -82,12 +82,17 @@ def operation():
         return productname
 
     def splitjoincaption(caption,productname):
-        newcaption=caption.split(' ')[2:]
+        captionarr=[]
+        newcaption=caption.split(' ')
+        for x in newcaption:
+            if x != '':
+                captionarr.append(x)       
+        updatedcaption=captionarr[2:]
         productname=productname.split('_')
-        productname=' '.join(productname)
-        newcaption.insert(0,productname)
-        newcaption=' '.join(newcaption)
-        return newcaption
+        for y in range(0,len(productname)):    
+            updatedcaption.insert(y,productname[y])
+        updatedcaption=' '.join(updatedcaption)
+        return updatedcaption
 
 
     for entry in os.scandir(directory):
@@ -102,10 +107,10 @@ def operation():
             updatedmanuscriptid=splitjoin(manuscriptid, productname)
             updatedlob=splitjoinlob(productname)
             updatedcaption=splitjoincaption(caption,productname)
-            updatedversionid=splitjoin(versionid,productname)
+            updatedversionid=updatedmanuscriptid
             #print(updatedmanuscriptid, updatedversionid)
 
-            root.getroot()[0].attrib['lob']=updatedlob
+            #root.getroot()[0].attrib['lob']=updatedlob
             root.getroot()[0].attrib['caption']=updatedcaption
             root.getroot()[0].attrib['manuscriptID']=updatedmanuscriptid
             root.getroot()[0].attrib['versionID']=updatedversionid
