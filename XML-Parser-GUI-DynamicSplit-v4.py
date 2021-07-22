@@ -21,7 +21,7 @@ input_effective_date.place(x=180,y=100)
 
 def operation():
     
-    states=['Import','RemoveLOB','Data','Product','Rating','RatingControl','Validation','Forms']
+    states=['Import','RemoveLOB','Data','Product','Rating','RatingControl','Validation','Forms','Pages']
     
     Label(roottk,text="processing",font=('helvetica', 12, 'bold')).place(x=230,y=360)
 
@@ -71,7 +71,7 @@ def operation():
                     return name[1:]
             if flag==0:
                 print('warning:check to files processed properly')
-                Label(roottk,text="warning:check the files whether processed properly").place(x=210,y=380)
+                Label(roottk,text="warning:check the files whether processed properly").place(x=190,y=380)
                 number=2
                 return name[2:]
         
