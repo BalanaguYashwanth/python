@@ -3,7 +3,7 @@ import xml.etree.ElementTree as ET
 import time
 
 directory=r'C:\Users\KZ623JK\OneDrive - EY\Documents\Multistate'
-version='20.0.0.1'
+version='21.0.0.1'
 #version=input(' enter the version number ')
 #effectivedate=input(' enter the effective date ')
 datas={}
@@ -62,6 +62,7 @@ def userchanges(datas):
             y=x.path.split('\\')[:-1]
             z='\\'.join(y)
             latestpath=z+'\\'+newname
+            #print(newname) #gets the name of the latest files
             tree=ET.parse(x.path)
             tree.write(latestpath)
             arr.append(latestpath)
@@ -72,7 +73,7 @@ def userchanges(datas):
         print('error',e)
         
         
-        
+
 def changes(arrdatas):
     for y in arrdatas:
         #print(y)
@@ -80,11 +81,9 @@ def changes(arrdatas):
         root=tree.getroot()[0]
         caption=tree.getroot()[0].attrib['caption'].split(' ')[:-1]
         caption.append('('+version+')')
-        version_caption.append(version.split('.'))
-       
-        
         newcaption=' '.join(caption)
         tree.getroot()[0].attrib['caption']=newcaption
+        tree.getroot()[0].attrib['versionID']=y.split('\\')[-1].split('.')[0]
         for objs in root:
             if objs.tag=='keys':
                 for obj in objs:
@@ -95,6 +94,7 @@ def changes(arrdatas):
         tree.write(y)
 
 
+        
 def modify(name):
     if version:
         num=len(version.split('.'))
