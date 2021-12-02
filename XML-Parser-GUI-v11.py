@@ -270,7 +270,7 @@ def operation():
                     y=x.path.split('\\')[:-1]
                     z='\\'.join(y)
                     latestpath=z+'\\'+newname+'.xml'
-                    print('path',latestpath) #gets the name of the latest files
+                    #print('path',latestpath) #gets the name of the latest files
                     tree=ET.parse(x.path)
                     tree.write(latestpath)
                     arr.append(latestpath)
@@ -317,16 +317,23 @@ def operation():
 
 
         def modify(name):
-            if version:
-                num=len(version.split('.'))
-                versionarr=version.split('.')
-                #print(versionarr)
-                modified=name.split('.')[0]
-                modified1=name.split('.')[1]
-                latestmodified=modified.split('_')[:-num]
-                return '_'.join(latestmodified+versionarr)
-            else:
-                return ''
+            try:
+                if version:
+                    strarr=[]
+                    num=len(version.split('.'))
+                    versionarr=version.split('.')
+                    #print(versionarr)
+                    modified=name.split('.')[0]
+                    modified1=name.split('.')[1]
+                    for x in modified.split('_'):
+                        if x.isdigit() == False:
+                            strarr.append(x)
+                    #latestmodified=modified.split('_')[:-num]
+                    return '_'.join(strarr+versionarr)
+                else:
+                    return ''
+            except Exception as e:
+                print('modify error',e)
 
 
 
